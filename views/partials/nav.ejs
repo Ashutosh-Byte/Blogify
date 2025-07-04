@@ -1,0 +1,273 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Blogify</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <% if (locals.user) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/add-new">Add Blog</a>
+        </li>
+        <li class="nav-item d-lg-none">
+          <a class="nav-link" href="#"> <%= locals.user.Fullname %> </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <%= locals.user ? locals.user.Fullname : "" %>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/blog/add-new">Add Blog</a></li>
+            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+          </ul>
+        </li>
+
+        <% }else{%>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/signup"
+            >Create Account</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/signin"
+            >Signin</a
+          >
+        </li>
+        <%}%>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<% if (locals.error) { %>
+<div class="container mt-4">
+  <div class="alert alert-danger" role="alert"><%= locals.error %></div>
+</div>
+
+<% } %>
+
+<style>
+  .navbar.scrolled {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(50px) saturate(200%);
+    -webkit-backdrop-filter: blur(50px) saturate(200%);
+  }
+
+  /* Stronger scrolled effect for navbar */
+  .navbar.scrolled {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(60px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(200%) !important;
+  }
+  /* Glassmorphism Apple-like Navbar with Blur Animation */
+  .navbar {
+    background: rgba(15, 23, 42, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    margin: 20px auto;
+    width: 95%;
+    max-width: 1200px;
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    animation: navbarFloatIn 0.6s ease-out;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+
+  body {
+    padding-top: 100px;
+  }
+
+  @keyframes navbarFloatIn {
+    from {
+      opacity: 0;
+      transform: translateY(-24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar-brand {
+    color: #f8fafc !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    text-shadow: 0 2px 8px rgba(79, 140, 255, 0.07);
+  }
+
+  .navbar-brand:hover {
+    color: #4f8cff !important;
+  }
+
+  .nav-link {
+    color: #f8fafc !important;
+    font-weight: 500;
+    margin-right: 8px;
+    border-radius: 8px;
+    padding: 8px 16px !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s,
+      backdrop-filter 0.3s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .nav-link.active,
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #ffffff !important;
+    background: rgba(51, 65, 85, 0.95);
+    box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .dropdown-menu {
+    background: rgba(30, 41, 59, 0.95);
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    animation: dropdownFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(6px) saturate(160%);
+    -webkit-backdrop-filter: blur(6px) saturate(160%);
+    color: #f8fafc;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  @keyframes dropdownFade {
+    0% {
+      opacity: 0;
+      transform: scaleY(0.4) translateY(-20px) rotateX(-20deg);
+      transform-origin: top center;
+      backdrop-filter: blur(0px) saturate(100%);
+      -webkit-backdrop-filter: blur(0px) saturate(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleY(1) translateY(0) rotateX(0deg);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+    }
+  }
+
+  .dropdown-item {
+    color: #e2e8f0;
+    border-radius: 8px;
+    margin: 2px 0;
+    transition: background 0.2s, color 0.2s, backdrop-filter 0.2s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background: rgba(51, 65, 85, 0.95);
+    color: #ffffff;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(79,140,255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 991px) {
+    .navbar {
+      border-radius: 0 0 12px 12px;
+    }
+    .navbar-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 0 0 12px 12px;
+      padding: 8px 0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .dropdown-menu {
+      animation: mobileDropdownSlide 0.4s ease-in-out forwards;
+    }
+    @keyframes mobileDropdownSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95) rotateX(-15deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0);
+      }
+    }
+  }
+</style>
+
+<style>
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    background: #1e293b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector(".navbar");
+    let lastScrollTop = window.scrollY;
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        // scrolling down
+        navbar.style.transform = "translateY(-120%)";
+        navbar.style.opacity = "0";
+      } else {
+        // scrolling up
+        navbar.style.transform = "translateY(0)";
+        navbar.style.opacity = "1";
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+  });
+</script>

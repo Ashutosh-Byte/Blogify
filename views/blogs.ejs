@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Blog</title>
+    <style>
+      nav.navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        padding-top: 80px; /* Adjust depending on your navbar height */
+        line-height: 1.45;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .blog-card,
+      .comments-section {
+        background: #1e293b;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 24px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+
+      .blog-title {
+        font-weight: 700;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        color: #f8fafc;
+        margin-bottom: 24px;
+        word-break: break-word;
+      }
+
+      .blog-cover {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        object-fit: contain;
+        max-height: none;
+        height: auto;
+        max-width: 100%;
+      }
+
+      .blog-body {
+        background: #334155;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 10px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        line-height: 1.6;
+      }
+
+      .author-section {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+        background: #334155;
+        padding: 12px 18px;
+        border-radius: 8px;
+      }
+
+      .author-section img {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border: 2px solid #1e293b;
+      }
+
+      .author-section span {
+        font-weight: 600;
+        color: #f1f5f9;
+        font-size: 1.1rem;
+      }
+
+      .comments-section h1 {
+        font-size: 1.5rem;
+        color: #f8fafc;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .comment-form input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #0f172a;
+        color: #e2e8f0;
+        margin-bottom: 8px;
+      }
+
+      .comment-form button {
+        background: #3b82f6;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .comment-form button:hover {
+        background: #2563eb;
+      }
+
+      .comment-list {
+        margin-top: 20px;
+      }
+
+      .comment-item {
+        display: flex;
+        gap: 12px;
+        background: #334155;
+        padding: 14px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .comment-item img {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #1e293b;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        color: #f8fafc;
+      }
+
+      .comment-text {
+        color: #e2e8f0;
+        margin-top: 4px;
+        word-break: break-word;
+      }
+
+      .page-fade-in {
+        opacity: 0;
+        transform: perspective(800px) rotateX(18deg) scale(0.92)
+          translateY(48px);
+        animation: pageDramaticIn 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pageDramaticIn {
+        from {
+          opacity: 0;
+          transform: perspective(800px) rotateX(18deg) scale(0.92)
+            translateY(48px);
+          filter: blur(20px);
+        }
+        60% {
+          opacity: 1;
+          transform: perspective(800px) rotateX(-4deg) scale(1.02)
+            translateY(-8px);
+          filter: blur(2px);
+        }
+        to {
+          opacity: 1;
+          transform: perspective(800px) rotateX(0deg) scale(1) translateY(0);
+          filter: blur(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container page-fade-in">
+      <div class="blog-card">
+        <h1 class="blog-title"><%= blog.title %></h1>
+        <img src="<%= blog.coverImageUrl %>" class="blog-cover" />
+        <pre class="blog-body"><%= blog.body %></pre>
+        <div class="author-section">
+          <img src="<%= blog.createdBy.profileImageUrl %>" />
+          <span><%= blog.createdBy.Fullname %></span>
+        </div>
+      </div>
+
+      <div class="comments-section">
+        <h1>Comments (<%= comments.length %>)</h1>
+        <% if (locals.user) { %>
+        <form
+          action="/blog/comment/<%= blog._id %>"
+          method="post"
+          class="comment-form"
+        >
+          <div class="mb-3">
+            <input
+              type="text"
+              name="content"
+              class="form-control"
+              placeholder="Enter your comment"
+            />
+            <button class="btn btn-sm btn-primary" type="submit">Add</button>
+          </div>
+        </form>
+        <% } %>
+        <div class="comment-list">
+          <% comments.forEach(comment => { %>
+          <div class="comment-item">
+            <img src="<%= comment.createdBy.profileImageUrl %>" />
+            <div class="comment-content">
+              <div class="comment-author">
+                <%= comment.createdBy.Fullname %>
+              </div>
+              <div class="comment-text"><%= comment.content %></div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/script') %>
+  </body>
+</html>
