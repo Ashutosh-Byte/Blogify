@@ -110,7 +110,8 @@ Visit: http://localhost:8000
 <img width="1392" alt="Screenshot 2025-07-05 at 4 34 47 AM" src="https://github.com/user-attachments/assets/ba47896a-bf2f-4d45-828a-ae66d5f95885" />
 <img width="1392" alt="Screenshot 2025-07-05 at 4 35 10 AM" src="https://github.com/user-attachments/assets/8f81d88c-4357-4a8e-833f-731e553cd1ad" />
 
-<img width="1392" alt="Screenshot 2025-07-05 at 4 34 47 AM" src="https://github.com/user-attachments/assets/32c44ac7-06db-465a-9399-ff0bdf774006" />
+<img width="1392" alt="Screenshot 2025-07-05 at 4 35 16 AM" src="https://github.com/user-attachments/assets/c302e440-3db7-4c7d-9379-38e39e4cf1ca" />
+
 
 
 
