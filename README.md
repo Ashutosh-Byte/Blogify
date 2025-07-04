@@ -106,15 +106,18 @@ Visit: http://localhost:8000
 
 ⸻
 
-📸 Screenshots (Optional)
+📸 Screenshots
+<img width="1392" alt="Screenshot 2025-07-05 at 4 34 47 AM" src="https://github.com/user-attachments/assets/ba47896a-bf2f-4d45-828a-ae66d5f95885" />
+<img width="1392" alt="Screenshot 2025-07-05 at 4 35 10 AM" src="https://github.com/user-attachments/assets/8f81d88c-4357-4a8e-833f-731e553cd1ad" />
 
-Include if needed: login, add blog, comment section, etc.
+<img width="1392" alt="Screenshot 2025-07-05 at 4 34 47 AM" src="https://github.com/user-attachments/assets/32c44ac7-06db-465a-9399-ff0bdf774006" />
 
-⸻
+
+
 
 🙌 Author
 
 Ashutosh Rai
-💼 LinkedIn
-📫 ashutosh@example.com (replace with your email)
+💼 https://www.linkedin.com/in/ashu-roy/
+📫 2022ume1830@mnit.ac.in(replace with your email)
     
