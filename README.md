@@ -67,7 +67,7 @@ A secure and scalable full-stack blogging application built with **Node.js**, **
 ### 1. Clone the Repository
 
 
-git clone https://github.com/Ashutosh-Byte/Blogify.git/blog-platform.git
+git clone https://github.com/Ashutosh-Byte/Blogify.git
 cd blog-platform
 
 2. Install Dependencies
